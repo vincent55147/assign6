@@ -34,7 +34,6 @@ class Fighter{
   void shoot() {
    shootnum++;
    shoothave++;
-   println(shootnum);
    bullets[shootnum%shootCount].x=this.x-31;
    bullets[shootnum%shootCount].y=this.y+fighterImg.width/4;
    bullets[shootnum%shootCount].bullet=true;
