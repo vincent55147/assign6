@@ -1,4 +1,4 @@
-class Fighter{
+class Fighter {
   PImage fighterImg;
   int x = 0;
   int y = 0;
@@ -21,46 +21,46 @@ class Fighter{
       this.move(Direction.UP);
     }
     if (isMovingDown) {
-      this.move(Direction.DOWN);  
+      this.move(Direction.DOWN);
     }
     if (isMovingLeft) {
       this.move(Direction.LEFT);
     }
     if (isMovingRight) {
-      this.move(Direction.RIGHT);  
+      this.move(Direction.RIGHT);
     }
   }
 
   void shoot() {
-   shootnum++;
-   shoothave++;
-   bullets[shootnum%shootCount].x=this.x-31;
-   bullets[shootnum%shootCount].y=this.y+fighterImg.width/4;
-   bullets[shootnum%shootCount].bullet=true;
+    shootnum++;
+    shoothave++;
+    bullets[shootnum%shootCount].x=this.x-31;
+    bullets[shootnum%shootCount].y=this.y+fighterImg.width/4;
+    bullets[shootnum%shootCount].bullet=true;
   }
 
   void move(int direct) {
     switch (direct) {
-      case Direction.UP:
-        if (this.y - speed > 0) {
-          this.y-= speed;
-        }
-        break;
-      case Direction.DOWN:
-        if (this.y + speed < height - this.fighterImg.height) {
-          this.y+= speed;
-        }
-        break;
-      case Direction.LEFT:
-        if (this.x - speed > 0) {
-          this.x-= speed;
-        }
-        break;
-      case Direction.RIGHT:
-        if (this.x + speed < width - this.fighterImg.width) {
-          this.x+= speed;
-        }
-        break;
+    case Direction.UP:
+      if (this.y - speed > 0) {
+        this.y-= speed;
+      }
+      break;
+    case Direction.DOWN:
+      if (this.y + speed < height - this.fighterImg.height) {
+        this.y+= speed;
+      }
+      break;
+    case Direction.LEFT:
+      if (this.x - speed > 0) {
+        this.x-= speed;
+      }
+      break;
+    case Direction.RIGHT:
+      if (this.x + speed < width - this.fighterImg.width) {
+        this.x+= speed;
+      }
+      break;
     }
   }
 
@@ -70,8 +70,7 @@ class Fighter{
     if (this.hp <=0) {
       state = GameState.END;
       return;
-    }
-    else if (this.hp >= 100) {
+    } else if (this.hp >= 100) {
       this.hp = 100;
       return;
     }
