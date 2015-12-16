@@ -36,12 +36,12 @@ FlameMgr flameMgr;
 Treasure treasure;
 HPDisplay hpDisplay;
 Bullet[] bullets =new Bullet[shootCount];
-
+Boss[] bosss=new Boss[5];
 boolean isMovingUp;
 boolean isMovingDown;
 boolean isMovingLeft;
 boolean isMovingRight;
-
+boolean currck=true;;
 int time;
 int wait = 4000;
 
@@ -76,18 +76,24 @@ void draw()
     bullets[bullet_draw].move();
     bullets[bullet_draw].out();
      if (bullets[bullet_draw].isCollideWithshoot()) {
-         shoothave--;
+         
           flameMgr.addFlame(bullets[bullet_draw].x, bullets[bullet_draw].y);
-          bullets[bullet_draw].bullet=false;
+          
         }
   }
   
     //enemys
-    if(millis() - time >= wait){
+    for(int boss_ck=0;boss_ck<5;boss_ck++)
+    if(bosss[boss_ck]!=null)
+    currck=false;
+    for(int enemy_ck=0;enemy_ck<5;enemy_ck++)
+    if(enemys[enemy_ck]!=null)
+    currck=false;
+    if(currck){
       addEnemy(currentType++);
       currentType = currentType%4;
-    }    
-
+    }
+    currck=true;
     for (int i = 0; i < enemyCount; ++i) {
       if (enemys[i]!= null) {
         enemys[i].move();
@@ -102,11 +108,33 @@ void draw()
         }
       }
     }
-    // 這地方應該加入Fighter 血量顯示UI
+     for (int bosd = 0; bosd < 5; ++bosd) {
+      if (bosss[bosd]!= null) {
+        bosss[bosd].move();
+        bosss[bosd].draw();
+        if (bosss[bosd].isCollideWithFighter()) {
+          fighter.hpValueChange(-50);
+          flameMgr.addFlame(bosss[bosd].x, bosss[bosd].y);
+          bosss[bosd]=null;
+        }
+        else if (bosss[bosd].isOutOfBorder()) {
+          bosss[bosd]=null;
+        }
+      }
+     }     //
     hpDisplay.updateWithFighterHP(fighter.hp);
   }
   else if (state == GameState.END) {
     bg.draw();
+    flameMgr = new FlameMgr();
+  bg = new Background();
+  treasure = new Treasure();
+  hpDisplay = new HPDisplay();
+  fighter = new Fighter(20);
+  for(int i=0;i<shootCount;i++)
+    bullets[i]=new Bullet();
+    currentType=0;
+   
   }
 }
 boolean isHit(int ax, int ay, int aw, int ah, int bx, int by, int bw, int bh)
