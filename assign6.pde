@@ -133,7 +133,8 @@ void draw()
   for(int i=0;i<shootCount;i++)
     bullets[i]=new Bullet();
     currentType=0;
-   
+   for(int boss_cf=0;boss_cf<5;boss_cf++)
+    bosss[boss_cf]=null;
   }
 }
 boolean isHit(int ax, int ay, int aw, int ah, int bx, int by, int bw, int bh)
