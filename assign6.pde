@@ -65,6 +65,7 @@ void draw()
   }
   else if (state == GameState.PLAYING) {
     bg.draw();
+    hpDisplay.updateWithFighterHP(fighter.hp);
     treasure.draw();
     flameMgr.draw();
     fighter.draw();
@@ -120,7 +121,7 @@ void draw()
         }
       }
      }     //
-    hpDisplay.updateWithFighterHP(fighter.hp);
+    
   }
   else if (state == GameState.END) {
     bg.draw();
