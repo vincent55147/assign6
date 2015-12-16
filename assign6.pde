@@ -69,16 +69,14 @@ void draw()
     flameMgr.draw();
     fighter.draw();
    
- 
+  //bullet
     for(int bullet_draw=0;bullet_draw<shootCount;bullet_draw++ )
     if(bullets[bullet_draw].bullet){
     bullets[bullet_draw].draw();
     bullets[bullet_draw].move();
     bullets[bullet_draw].out();
      if (bullets[bullet_draw].isCollideWithshoot()) {
-         
           flameMgr.addFlame(bullets[bullet_draw].x, bullets[bullet_draw].y);
-          
         }
   }
   
