@@ -1,31 +1,26 @@
-class GameState
-{
+class GameState{
   static final int START = 0;
   static final int PLAYING = 1;
   static final int END = 2;
 }
-class Direction
-{
+class Direction{
   static final int LEFT = 0;
   static final int RIGHT = 1;
   static final int UP = 2;
   static final int DOWN = 3;
 }
-class EnemysShowingType
-{
+class EnemysShowingType{
   static final int STRAIGHT = 0;
   static final int SLOPE = 1;
   static final int DIAMOND = 2;
   static final int STRONGLINE = 3;
 }
-class FlightType
-{
+class FlightType{
   static final int FIGHTER = 0;
   static final int ENEMY = 1;
   static final int ENEMYSTRONG = 2;
 }
-int  shoothave=0,shootnum=0;
-int state = GameState.START;
+int  shoothave=0,shootnum=0,state = GameState.START;
 int currentType = EnemysShowingType.STRAIGHT;
 int enemyCount = 8;
 int shootCount =99;
@@ -41,21 +36,13 @@ boolean isMovingUp;
 boolean isMovingDown;
 boolean isMovingLeft;
 boolean isMovingRight;
-boolean currck=true;;
+boolean currck=true;
 int time;
 int wait = 4000;
-
-
-
 void setup () {
   size(640, 480);
   flameMgr = new FlameMgr();
   bg = new Background();
-  treasure = new Treasure();
-  hpDisplay = new HPDisplay();
-  fighter = new Fighter(20);
-  for(int i=0;i<shootCount;i++)
-    bullets[i]=new Bullet();
 }
 
 void draw()
@@ -120,18 +107,10 @@ void draw()
           bosss[bosd]=null;
         }
       }
-     }     //
-    
+     }  
   }
   else if (state == GameState.END) {
     bg.draw();
-    flameMgr = new FlameMgr();
-  bg = new Background();
-  treasure = new Treasure();
-  hpDisplay = new HPDisplay();
-  fighter = new Fighter(20);
-  for(int i=0;i<shootCount;i++)
-    bullets[i]=new Bullet();
     currentType=0;
    for(int boss_cf=0;boss_cf<5;boss_cf++)
     bosss[boss_cf]=null;
@@ -178,6 +157,9 @@ void keyReleased(){
     flameMgr = new FlameMgr();
     treasure = new Treasure();
     fighter = new Fighter(20);
+    for(int i=0;i<shootCount;i++)
+       bullets[i]=new Bullet();
+       hpDisplay = new HPDisplay();
       default : break ;
     }
   }
